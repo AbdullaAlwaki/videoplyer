@@ -15,6 +15,7 @@ const minimizeButton = fullScreenButton.querySelector('.minimize')
 const progressBar = document.querySelector('.progress_bar')
 const watchedBar = document.querySelector('.watched-bar')
 const timeLeft = document.querySelector('.time-remaining')
+const volumeBar = videoContainer.querySelector('.volumeRang')
 
 
 
@@ -62,6 +63,10 @@ const volumefm = () => {
     }
 };
 
+volumeBar.addEventListener('mousemove', (e) => {
+    video.volume = e.target.value
+})
+
 
 const fullscreen = () => {
     if (!document.fullscreenElement) {
@@ -82,7 +87,7 @@ document.addEventListener('fullscreenchange', () => {
 });
 
 
-document.addEventListener('Keyup', (event) => {
+document.addEventListener('keyup', (event) => {
     if (event.code === 'Space') {
         playpause();
     }
@@ -91,6 +96,15 @@ document.addEventListener('Keyup', (event) => {
     }
     if (event.code === 'KeyF') {
         fullscreen();
+    }
+    if (event.code === 'ArrowRight') {
+        video.currentTime += 10;
+    }
+    if (event.code === 'ArrowLeft') {
+        video.currentTime -= 10;
+    }
+    if (event.code === 'ArrowUp') {
+
     }
     displayControls();
 });
@@ -114,11 +128,11 @@ video.addEventListener('timeupdate', () => {
     let minutes = (time.getMinutes().toString()).padStart('2', '0');
     let seconds = (time.getSeconds().toString()).padStart('2', '0');
 
-    timeLeft.textContent = `${hours ? hours : '00'}:${minutes}:${seconds}`
+timeLeft.textContent = `${hours ? hours : '00'}:${minutes}:${seconds}`
 });
 
 progressBar.addEventListener('click', (event) => {
-    const pos = (event.pagex - (bar.offsetLeft + bar.offsetparent.offsetLeft)) / bar.offsetWidth;
+    const pos = (event.offsetX || event.pagex - (progressBar.offsetLeft + progressBar.offsetParent.offsetLeft)) / progressBar.offsetWidth;
     video.currentTime = pos * video.duration;
 });
 
@@ -155,3 +169,4 @@ fullScreenButton.addEventListener('click', fullscreen)
 
 
 // progress and time
+

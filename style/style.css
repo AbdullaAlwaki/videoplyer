@@ -25,9 +25,6 @@ video {
   position: fixed;
   bottom: 0px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
   transition: opacity 0.5s linear;
 }
@@ -50,7 +47,7 @@ video {
 }
 
 .progress_bar{
-  width: 90vw;
+  width: 90%;
   height: 1vw;
   max-height: 7px;
   background-color: blueviolet;
@@ -69,7 +66,6 @@ video {
 
 .watched-bar{
   height: 110%;
-  width: 20%;
 }
 
 .playhead{
@@ -78,10 +74,7 @@ video {
   border-radius: 50%;
   max-width: 25px;
   max-height: 25px;
-  transform: translateX(-50%);
 }
-
-
 
 .controls {
   width: 100%;
@@ -136,6 +129,55 @@ svg{
 .captions svg {
   stroke: none;
   fill: white;
+}
+
+.slider{
+  height: 2%;
+  width: 8%;
+  padding: 1.5%;
+  display: flex;
+  align-items: center;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.slider:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  margin-right:2%;
+}
+
+input{
+  height: 10px;
+  -webkit-appearance: none;
+  outline: none;
+  background-color: blueviolet;
+  border-radius: 25px;
+  
+}
+
+input::-moz-range-progress{
+  height: 100%;
+  background: red;
+}
+
+input::-moz-range-thumb{
+  height: 250%;
+  width: 10%;
+  background-color: red;
+  border: none;
+  -webkit-appearance: none;
+}
+
+.value{
+  color: white;
+  font-size: 1.5rem ;
+  font-weight: 600;
+  width: 15%;
+  text-align: center;
+  
 }
 
 .title {
